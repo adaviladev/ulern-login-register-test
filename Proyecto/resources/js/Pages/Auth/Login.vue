@@ -30,7 +30,7 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout class="bg-slate-600">
+    <GuestLayout class="bg-slate-600 bg-custom">
         <Head title="Iniciar sesión" />
 
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
