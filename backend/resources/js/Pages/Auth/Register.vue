@@ -1,21 +1,23 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
+    name: "",
+    surname: "",
+    phone: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
+    form.post(route("register"), {
+        onFinish: () => form.reset("password", "password_confirmation"),
     });
 };
 </script>
@@ -26,7 +28,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" value="Nombre" />
 
                 <TextInput
                     id="name"
@@ -41,8 +43,38 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
+            <div>
+                <InputLabel for="surname" value="Apellido" />
+
+                <TextInput
+                    id="surname"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.surname"
+                    required
+                    autocomplete="surname"
+                />
+
+                <InputError class="mt-2" :message="form.errors.surname" />
+            </div>
+
+            <div>
+                <InputLabel for="phone" value="Teléfono" />
+
+                <TextInput
+                    id="phone"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.phone"
+                    required
+                    autocomplete="phone"
+                />
+
+                <InputError class="mt-2" :message="form.errors.phone" />
+            </div>
+
             <div class="mt-4">
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Correo electrónico" />
 
                 <TextInput
                     id="email"
@@ -57,7 +89,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" value="Contraseña" />
 
                 <TextInput
                     id="password"
@@ -74,7 +106,7 @@ const submit = () => {
             <div class="mt-4">
                 <InputLabel
                     for="password_confirmation"
-                    value="Confirm Password"
+                    value="Confirmar contraseña"
                 />
 
                 <TextInput
@@ -97,7 +129,7 @@ const submit = () => {
                     :href="route('login')"
                     class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                    Already registered?
+                    ¿Ya tiene una cuenta?
                 </Link>
 
                 <PrimaryButton
@@ -105,7 +137,7 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Register
+                    Registrar
                 </PrimaryButton>
             </div>
         </form>

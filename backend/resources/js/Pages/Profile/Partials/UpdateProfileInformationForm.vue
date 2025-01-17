@@ -1,9 +1,9 @@
 <script setup>
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Link, useForm, usePage } from '@inertiajs/vue3';
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { Link, useForm, usePage } from "@inertiajs/vue3";
 
 defineProps({
     mustVerifyEmail: {
@@ -18,6 +18,8 @@ const user = usePage().props.auth.user;
 
 const form = useForm({
     name: user.name,
+    surname: user.surname,
+    phone: user.phone,
     email: user.email,
 });
 </script>
@@ -26,11 +28,12 @@ const form = useForm({
     <section>
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                Profile Information
+                Información de perfil
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                Update your account's profile information and email address.
+                Actualice su información de perfil y dirección de correo
+                electrónico.
             </p>
         </header>
 
@@ -39,7 +42,7 @@ const form = useForm({
             class="mt-6 space-y-6"
         >
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" value="Nombre" />
 
                 <TextInput
                     id="name"
@@ -53,9 +56,39 @@ const form = useForm({
 
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
+            <div>
+                <InputLabel for="surname" value="Apellido" />
+
+                <TextInput
+                    id="surname"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.surname"
+                    required
+                    autofocus
+                    autocomplete="surname"
+                />
+
+                <InputError class="mt-2" :message="form.errors.surname" />
+            </div>
+            <div>
+                <InputLabel for="phone" value="Teléfono" />
+
+                <TextInput
+                    id="phone"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.phone"
+                    required
+                    autofocus
+                    autocomplete="phone"
+                />
+
+                <InputError class="mt-2" :message="form.errors.phone" />
+            </div>
 
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Correo electrónico" />
 
                 <TextInput
                     id="email"
@@ -71,14 +104,15 @@ const form = useForm({
 
             <div v-if="mustVerifyEmail && user.email_verified_at === null">
                 <p class="mt-2 text-sm text-gray-800">
-                    Your email address is unverified.
+                    Su dirección de correo electrónico no está verificada.
                     <Link
                         :href="route('verification.send')"
                         method="post"
                         as="button"
                         class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                        Click here to re-send the verification email.
+                        Haga clic aquí para volver a enviar el correo
+                        electrónico de verificación.
                     </Link>
                 </p>
 
@@ -86,12 +120,15 @@ const form = useForm({
                     v-show="status === 'verification-link-sent'"
                     class="mt-2 text-sm font-medium text-green-600"
                 >
-                    A new verification link has been sent to your email address.
+                    Se envió un nuevo link de verificación a su dirección de
+                    correo electrónico.
                 </div>
             </div>
 
             <div class="flex items-center gap-4">
-                <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+                <PrimaryButton :disabled="form.processing"
+                    >Guardar</PrimaryButton
+                >
 
                 <Transition
                     enter-active-class="transition ease-in-out"
@@ -103,7 +140,7 @@ const form = useForm({
                         v-if="form.recentlySuccessful"
                         class="text-sm text-gray-600"
                     >
-                        Saved.
+                        Datos guardados.
                     </p>
                 </Transition>
             </div>
