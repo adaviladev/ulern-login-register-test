@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este proyecto es una prueba técnica para el puesto de desarrollador Fullstack Jr. en Ulern. El objetivo es implementar un sistema de login y registro utilizando Laravel 11 para el backend, Vue 3 para el frontend, TailwindCSS para los estilos y SQLite como base de datos.
+Este proyecto es una prueba técnica para el puesto de desarrollador Fullstack Jr. en Ulern. El objetivo es implementar un sistema de login y registro utilizando Laravel 11 para el backend, Vue 3 para el frontend, TailwindCSS para los estilos y SQLite como base de datos. Adicionalmente, se integra una app de búsqueda de Pokémon
 
 ## Tecnologías Utilizadas
 
@@ -17,6 +17,8 @@ Este proyecto es una prueba técnica para el puesto de desarrollador Fullstack J
   - Campos: nombre, apellido, número de teléfono, email y contraseña.
 - **Inicio de Sesión:**
   - Campos: email y contraseña.
+  **Dashboard**
+  - Aplicación integrada de búsqueda de Pokémon a través del endpoint https://pokeapi-proxy.freecodecamp.rocks/api/pokemon que buscar Pokémon por su nombre o ID.
 - **Página de Perfil:**
   - Visualización de los datos del usuario registrado.
 
@@ -43,7 +45,7 @@ Este proyecto es una prueba técnica para el puesto de desarrollador Fullstack J
 
 ### Acceso a la Aplicación
 
-La aplicación estará disponible en http://localhost:8000.
+La aplicación estará disponible en http://localhost:8000. Para acceder a la aplicación de búsqueda de Pokémon, el usuario debe primero crear una cuenta e iniciar sesión.
 
 ## Estructura del Proyecto
 

@@ -66,8 +66,8 @@ const getRandomPokemon = async () => {
         // Update the reactive variables for random Pokémon
         pokemonName.value = data.name.toUpperCase();
         pokemonId.value = `#${data.id}`;
-        weight.value = `Weight: ${data.weight}`;
-        height.value = `Height: ${data.height}`;
+        weight.value = `Peso: ${data.weight}`;
+        height.value = `Altura: ${data.height}`;
         sprite.value = data.sprites.front_default;
         hp.value = data.stats[0].base_stat;
         attack.value = data.stats[1].base_stat;
@@ -77,7 +77,7 @@ const getRandomPokemon = async () => {
         speed.value = data.stats[5].base_stat;
 
         types.value =
-            "Type: " +
+            "Tipo: " +
             data.types
                 .map(
                     (obj) =>
@@ -127,7 +127,9 @@ const handleRandom = () => {
             </h2>
         </template> -->
 
-        <div class="py-12">
+        <div
+            class="py-12 md:w-2/4 w-11/12 place-content-center justify-self-center"
+        >
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div
                     class="overflow-hidden shadow-sm sm:rounded-lg bg-slate-900"
@@ -141,34 +143,44 @@ const handleRandom = () => {
                             <label for="search-input" class="block text-lg"
                                 >Busca un Pokémon por su nombre o ID:</label
                             >
-                            <input
-                                type="text"
-                                v-model="searchInput"
-                                id="search-input"
-                                required
-                                class="p-2 border rounded-md w-full text-gray-950"
-                            />
+                            <div class="md:w-3/6">
+                                <input
+                                    type="text"
+                                    v-model="searchInput"
+                                    id="search-input"
+                                    required
+                                    class="p-2 border rounded-md w-full text-gray-950"
+                                />
+                            </div>
+
                             <button
-                                class="btn btn-light bg-blue-500 text-white py-2 px-4 rounded-md"
+                                class="btn btn-light bg-blue-500 text-white py-2 px-4 rounded-md mr-6"
                                 type="submit"
                             >
                                 Buscar
                             </button>
+                            <button
+                                class="btn btn-primary bg-blue-300 text-white py-2 px-4 rounded-md mt-4"
+                                @click="handleRandom"
+                                type="button"
+                            >
+                                Mostar Pokémon aleatorio
+                            </button>
                         </form>
-                        <button
-                            class="btn btn-primary bg-green-500 text-white py-2 px-4 rounded-md mt-4"
+                        <!-- <button
+                            class="btn btn-primary bg-blue-300 text-white py-2 px-4 rounded-md mt-4"
                             @click="handleRandom"
                             type="button"
                         >
-                            Show a random Pokémon
-                        </button>
+                            Mostar un Pokémon aleatorio
+                        </button> -->
 
                         <div
-                            class="identification mt-4 flex flex-col items-center"
+                            class="identification mt-4 flex flex-col items-center mt-6"
                         >
                             <span
                                 id="pokemon-name"
-                                class="text-2xl font-bold"
+                                class="text-2xl font-bold text-zinc-600"
                                 >{{ pokemonName }}</span
                             >
                             <span
@@ -179,17 +191,17 @@ const handleRandom = () => {
                         </div>
 
                         <div
-                            class="type-and-size mt-4 flex justify-center gap-4"
+                            class="type-and-size mt-4 flex justify-center gap-4 w-11/12"
                         >
                             <span
                                 id="types"
-                                class="block text-slate-50 text-lg"
+                                class="block text-slate-50 text-lg uppercase"
                                 v-html="types"
                             ></span>
-                            <span id="weight" class="text-lg">{{
+                            <span id="weight" class="text-lg uppercase">{{
                                 weight
                             }}</span>
-                            <span id="height" class="text-lg">{{
+                            <span id="height" class="text-lg uppercase">{{
                                 height
                             }}</span>
                         </div>
@@ -207,15 +219,17 @@ const handleRandom = () => {
                             </div>
                         </div> -->
 
-                        <div class="base-stats mt-4 bg-gray-100 p-1 rounded-md flex flex-wrap bg-slate-400 content-center items-center">
+                        <div
+                            class="base-stats mt-4 bg-gray-100 p-1 rounded-md flex flex-wrap bg-slate-400 content-center items-center"
+                        >
                             <div
-                                class="sprite-container flex justify-center content-center flex-1 mt-4 text-lg h-48 items-center"
+                                class="sprite-container flex justify-center content-center flex-1 mt-2 text-lg h-fit w-max items-center"
                             >
                                 <img
                                     v-if="sprite"
                                     :src="sprite"
                                     alt="Pokémon sprite"
-                                    class="w-30 h-30 align-middle"
+                                    class="h-32 w-32 align-middle"
                                 />
                             </div>
                             <table
@@ -228,31 +242,31 @@ const handleRandom = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-4 py-2">Attack:</td>
+                                    <td class="px-4 py-2">Ataque:</td>
                                     <td class="px-4 py-2 text-right">
                                         {{ attack }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-4 py-2">Defense:</td>
+                                    <td class="px-4 py-2">Defensa:</td>
                                     <td class="px-4 py-2 text-right">
                                         {{ defense }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-4 py-2">Sp. Attack:</td>
+                                    <td class="px-4 py-2">Ataque esp.:</td>
                                     <td class="px-4 py-2 text-right">
                                         {{ spAttack }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-4 py-2">Sp. Defense:</td>
+                                    <td class="px-4 py-2">Defensa esp.:</td>
                                     <td class="px-4 py-2 text-right">
                                         {{ spDefense }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-4 py-2">Speed:</td>
+                                    <td class="px-4 py-2">Velocidad:</td>
                                     <td class="px-4 py-2 text-right">
                                         {{ speed }}
                                     </td>
