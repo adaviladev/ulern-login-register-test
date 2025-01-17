@@ -30,16 +30,16 @@ Este proyecto es una prueba técnica para el puesto de desarrollador Fullstack J
 
 ### Instalación del Backend
 
-1. Navega a la carpeta `backend`.
-2. Copia el archivo `.env.example` a `.env` y configura la conexión a la base de datos SQLite.
-3. Genera la clave de la aplicación: php artisan key:generate
-4. Ejecuta composer install para instalar las dependencias de PHP.
-5. Ejecuta php artisan migrate para crear las tablas en la base de datos.
-6. Ejecuta php artisan serve para iniciar e servidor de desarrollo.
+1. Navega a la carpeta `Proyecto`.
+2. Instalar Laravel mediante el comando `composer global require laravel/installer`
+2. Abre el archivo `.env` y configura la ruta de conexión a la base de datos SQLite.
+3. Ejecuta `composer install` para instalar las dependencias de PHP.
+4. Ejecuta `php artisan migrate` para crear las tablas en la base de datos.
+5. Ejecuta `php artisan serve` para iniciar e servidor de desarrollo.
 
 ### Instalación del Frontend
 
-1. Ejecuta npm install para instalar las dependencias de JavaScript.
+1. Ejecuta `npm install` para instalar las dependencias de JavaScript.
 
 ### Acceso a la Aplicación
 
@@ -80,4 +80,4 @@ Este proyecto sigue buenas prácticas de desarrollo, incluyendo una estructura d
 Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request para discutir cambios o mejoras.
 
 ## Contacto
-Si tienes alguna pregunta o necesitas más información, no dudes en contactarme a través de tu-email@example.com.
+Si tienes alguna pregunta o necesitas más información, no dudes en contactarme a través de alvarodaviladev@gmail.com.

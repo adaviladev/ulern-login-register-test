@@ -15,7 +15,18 @@ const form = useForm({
     password_confirmation: "",
 });
 
+const validatePhone = () => {
+    if (!/^\d+$/.test(form.phone)) {
+        form.setError("phone", "El teléfono solo puede contener números.");
+    } else {
+        form.clearErrors("phone");
+    }
+};
+
 const submit = () => {
+    validatePhone();
+    if (form.hasErrors) return;
+
     form.post(route("register"), {
         onFinish: () => form.reset("password", "password_confirmation"),
     });
@@ -29,7 +40,6 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Nombre" />
-
                 <TextInput
                     id="name"
                     type="text"
@@ -39,13 +49,11 @@ const submit = () => {
                     autofocus
                     autocomplete="name"
                 />
-
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
             <div>
                 <InputLabel for="surname" value="Apellido" />
-
                 <TextInput
                     id="surname"
                     type="text"
@@ -54,13 +62,11 @@ const submit = () => {
                     required
                     autocomplete="surname"
                 />
-
                 <InputError class="mt-2" :message="form.errors.surname" />
             </div>
 
             <div>
                 <InputLabel for="phone" value="Teléfono" />
-
                 <TextInput
                     id="phone"
                     type="text"
@@ -68,14 +74,14 @@ const submit = () => {
                     v-model="form.phone"
                     required
                     autocomplete="phone"
+                    pattern="[0-9]*"
+                    @input="validatePhone"
                 />
-
                 <InputError class="mt-2" :message="form.errors.phone" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="email" value="Correo electrónico" />
-
                 <TextInput
                     id="email"
                     type="email"
@@ -84,13 +90,11 @@ const submit = () => {
                     required
                     autocomplete="username"
                 />
-
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="password" value="Contraseña" />
-
                 <TextInput
                     id="password"
                     type="password"
@@ -99,7 +103,6 @@ const submit = () => {
                     required
                     autocomplete="new-password"
                 />
-
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
@@ -108,7 +111,6 @@ const submit = () => {
                     for="password_confirmation"
                     value="Confirmar contraseña"
                 />
-
                 <TextInput
                     id="password_confirmation"
                     type="password"
@@ -117,7 +119,6 @@ const submit = () => {
                     required
                     autocomplete="new-password"
                 />
-
                 <InputError
                     class="mt-2"
                     :message="form.errors.password_confirmation"
